@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Null Forge | Ecosystem</title>
+
+  <link rel="icon" href="logo bigorna1.png" />
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Background premium -->
+  <div class="nf-bg" aria-hidden="true">
+    <div class="nf-glow nf-glow-1"></div>
+    <div class="nf-glow nf-glow-2"></div>
+    <div class="nf-grid"></div>
+  </div>
+
+  <!-- AUTH (LOGIN OBRIGATÓRIO) -->
+  <main class="auth" id="authRoot" aria-hidden="false">
+    <section class="auth-card">
+      <header class="auth-header">
+        <div class="brand">
+          <img class="brand-logo" src="logo bigorna1.png" alt="Null Forge" />
+          <div class="brand-text">
+            <h1>Null Forge</h1>
+            <p>Ecosystem para aprender, colaborar e negociar projetos.</p>
+          </div>
+        </div>
+        <div class="auth-badges">
+          <span class="chip"><i class="fa-solid fa-shield-halved"></i> Login obrigatório</span>
+          <span class="chip"><i class="fa-solid fa-layer-group"></i> Abas organizadas</span>
+        </div>
+      </header>
+
+      <div class="auth-body">
+        <div class="auth-left">
+          <h2>Acesse sua conta</h2>
+          <p class="muted">Entre com Google, Facebook ou com seu e-mail.</p>
+
+          <div class="oauth-row">
+            <button class="btn btn-oauth btn-google" id="btnGoogle" type="button">
+              <i class="fa-brands fa-google"></i>
+              Continuar com Google
+            </button>
+
+            <button class="btn btn-oauth btn-facebook" id="btnFacebook" type="button">
+              <i class="fa-brands fa-facebook"></i>
+              Continuar com Facebook
+            </button>
+          </div>
+
+          <div class="divider"><span>ou</span></div>
+
+          <form class="auth-form" id="emailLoginForm">
+            <label class="field">
+              <span>E-mail (Gmail/qualquer)</span>
+              <div class="input">
+                <i class="fa-solid fa-envelope"></i>
+                <input id="email" type="email" placeholder="seuemail@gmail.com" autocomplete="email" required />
+              </div>
+            </label>
+
+            <label class="field">
+              <span>Senha</span>
+              <div class="input">
+                <i class="fa-solid fa-lock"></i>
+                <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" required />
+                <button class="icon-btn" type="button" id="togglePassword" aria-label="Mostrar/ocultar senha">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </label>
+
+            <div class="form-row">
+              <label class="check">
+                <input id="remember" type="checkbox" checked />
+                <span>Manter conectado</span>
+              </label>
+
+              <button class="link" type="button" id="forgotBtn">Esqueci a senha</button>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+              Entrar
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <p class="status" id="authStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <aside class="auth-right">
+          <h3>O que tem dentro do Null Forge?</h3>
+
+          <ul class="feature-list">
+            <li><i class="fa-solid fa-sitemap"></i> <b>Ecossistema:</b> trilhas, recursos e oportunidades</li>
+            <li><i class="fa-solid fa-store"></i> <b>Marketplace:</b> venda/compra de projetos, preço negociável</li>
+            <li><i class="fa-solid fa-people-group"></i> <b>Comunidades:</b> ajuda, networking e evolução</li>
+            <li><i class="fa-solid fa-newspaper"></i> <b>Blog:</b> posts e novidades</li>
+            <li><i class="fa-solid fa-user-gear"></i> <b>Minha conta:</b> perfil, projetos, segurança</li>
+          </ul>
+
+          <div class="mini-card">
+            <div class="mini-title">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Próximo nível</span>
+            </div>
+            <p class="muted">Esse layout já está pronto pra você plugar OAuth real e backend quando quiser.</p>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="auth-footer">
+        <span class="muted">© <span id="year"></span> Null Forge</span>
+        <div class="footer-actions">
+          <button class="chip chip-btn" id="themeBtn" type="button" aria-label="Alternar tema">
+            <i class="fa-solid fa-moon"></i>
+            Tema
+          </button>
+          <button class="chip chip-btn" id="logoutEverywhereBtn" type="button" aria-label="Limpar sessão">
+            <i class="fa-solid fa-broom"></i>
+            Limpar sessão
+          </button>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- APP (SÓ APARECE DEPOIS DO LOGIN) -->
+  <div class="app" id="appRoot" aria-hidden="true">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn" id="menuBtn" type="button" aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="app-brand">
+          <img src="logo bigorna1.png" class="app-logo" alt="Null Forge" />
+          <div class="app-brand-text">
+            <strong>Null Forge</strong>
+            <span class="muted">Ecosystem</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-center">
+        <div class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input id="globalSearch" type="search" placeholder="Buscar projetos, comunidades, posts..." />
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <button class="icon-btn" id="notifBtn" type="button" aria-label="Notificações">
+          <i class="fa-regular fa-bell"></i>
+        </button>
+
+        <button class="chip chip-btn" id="themeBtn2" type="button" aria-label="Alternar tema">
+          <i class="fa-solid fa-moon"></i>
+          Tema
+        </button>
+
+        <div class="user-pill" id="userPill">
+          <div class="avatar" id="avatar">K</div>
+          <div class="user-meta">
+            <span class="user-name" id="userName">Você</span>
+            <span class="user-email muted" id="userEmail">—</span>
+          </div>
+          <button class="icon-btn" id="userMenuBtn" type="button" aria-label="Menu do usuário">
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <div class="user-menu" id="userMenu" role="menu" aria-hidden="true">
+            <button class="menu-item" id="goAccount" type="button" role="menuitem">
+              <i class="fa-solid fa-user-gear"></i> Minha conta
+            </button>
+            <button class="menu-item danger" id="logoutBtn" type="button" role="menuitem">
+              <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <nav class="nav">
+          <button class="nav-item active" data-tab="ecosystem" type="button">
+            <i class="fa-solid fa-sitemap"></i>
+            <span>Ecossistema</span>
+          </button>
+          <button class="nav-item" data-tab="marketplace" type="button">
+            <i class="fa-solid fa-store"></i>
+            <span>Venda de Projetos</span>
+          </button>
+          <button class="nav-item" data-tab="communities" type="button">
+            <i class="fa-solid fa-people-group"></i>
+            <span>Comunidades</span>
+          </button>
+          <button class="nav-item" data-tab="blog" type="button">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Blog</span>
+          </button>
+          <button class="nav-item" data-tab="account" type="button">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>Minha Conta</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="soft-card">
+            <div class="soft-title">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Null Forge</span>
+            </div>
+            <p class="muted">Um ecossistema onde gente boa se encontra e projeto vira oportunidade.</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="content">
+        <!-- ECOSSISTEMA -->
+        <section class="tab active" id="tab-ecosystem">
+          <div class="page-title">
+            <h2>Ecossistema</h2>
+            <p class="muted">Trilhas, recursos e caminhos pra evoluir rápido.</p>
+          </div>
+
+          <div class="grid-3">
+            <article class="card">
+              <div class="card-icon"><i class="fa-solid fa-road"></i></div>
+              <h3>Trilhas</h3>
+              <p class="muted">Front-end, Back-end, Fullstack, IA, Mobile…</p>
+              <button class="btn btn-ghost" type="button">Ver trilhas</button>
+            </article>
+
+            <article class="card">
+              <div class="card-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+              <h3>Mentoria</h3>
+              <p class="muted">Ajuda prática dentro das comunidades.</p>
+              <button class="btn btn-ghost" type="button">Encontrar mentores</button>
+            </article>
+
+            <article class="card">
+              <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
+              <h3>Desafios</h3>
+              <p class="muted">Projetos semanais e metas pra crescer.</p>
+              <button class="btn btn-ghost" type="button">Entrar em desafios</button>
+            </article>
+          </div>
+
+          <div class="wide-card">
+            <div>
+              <h3>O objetivo do Null Forge</h3>
+              <p class="muted">
+                Construir um lugar onde qualquer pessoa possa aprender, colaborar e vender (ou compartilhar)
+                projetos — com preço negociável e comunidade forte.
+              </p>
+            </div>
+            <button class="btn btn-primary" type="button">Começar agora</button>
+          </div>
+        </section>
+
+        <!-- MARKETPLACE -->
+        <section class="tab" id="tab-marketplace">
+          <div class="page-title">
+            <h2>Venda de Projetos</h2>
+            <p class="muted">Compra, venda e negociação em um só lugar.</p>
+          </div>
+
+          <div class="grid-2">
+            <article class="card">
+              <h3>Publicar projeto</h3>
+              <p class="muted">Preço fixo ou “negociável”, e uma descrição forte.</p>
+              <button class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i> Novo projeto</button>
+            </article>
+
+            <article class="card">
+              <h3>Explorar vitrine</h3>
+              <p class="muted">Filtrar por stack, nível, preço e tipo (free/pago).</p>
+              <button class="btn btn-ghost" type="button">Explorar</button>
+            </article>
+          </div>
+
+          <div class="table-card">
+            <div class="table-head">
+              <h3>Projetos em destaque</h3>
+              <span class="muted">mock data</span>
+            </div>
+
+            <div class="nf-table">
+              <div class="row head">
+                <span>Projeto</span><span>Stack</span><span>Preço</span><span>Status</span>
+              </div>
+              <div class="row">
+                <span>Landing Page Premium</span><span>HTML/CSS/TS</span><span>R$ 299</span><span class="pill ok">Negociável</span>
+              </div>
+              <div class="row">
+                <span>CRM Mini</span><span>Node/TS</span><span>R$ 1.200</span><span class="pill ok">Negociável</span>
+              </div>
+              <div class="row">
+                <span>Template Blog</span><span>JS/CSS</span><span>Grátis</span><span class="pill">Free</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- COMUNIDADES -->
+        <section class="tab" id="tab-communities">
+          <div class="page-title">
+            <h2>Comunidades</h2>
+            <p class="muted">Espaços por tema, stack e objetivo.</p>
+          </div>
+
+          <div class="grid-3">
+            <article class="card">
+              <h3>Front-end Brasil</h3>
+              <p class="muted">HTML, CSS, React, UI, performance.</p>
+              <button class="btn btn-ghost" type="button">Entrar</button>
+            </article>
+            <article class="card">
+              <h3>Fullstack Builders</h3>
+              <p class="muted">Projetos reais, deploy e arquitetura.</p>
+              <button class="btn btn-ghost" type="button">Entrar</button>
+            </article>
+            <article class="card">
+              <h3>IA & Data</h3>
+              <p class="muted">Modelos, automações e dados na prática.</p>
+              <button class="btn btn-ghost" type="button">Entrar</button>
+            </article>
+          </div>
+        </section>
+
+        <!-- BLOG -->
+        <section class="tab" id="tab-blog">
+          <div class="page-title">
+            <h2>Blog</h2>
+            <p class="muted">Conteúdo pra quem tá começando (e pra quem tá evoluindo).</p>
+          </div>
+
+          <div class="grid-2">
+            <article class="card">
+              <h3>Como sair do zero no Front-end</h3>
+              <p class="muted">Uma trilha simples e direta com projetos.</p>
+              <button class="btn btn-ghost" type="button">Ler</button>
+            </article>
+            <article class="card">
+              <h3>TypeScript na prática</h3>
+              <p class="muted">Por que TS dá “up” e como usar no dia a dia.</p>
+              <button class="btn btn-ghost" type="button">Ler</button>
+            </article>
+          </div>
+
+          <div class="wide-card">
+            <div>
+              <h3>Conectar com seu blog atual</h3>
+              <p class="muted">Esse botão já aponta pro seu <b>BLOG.html</b>.</p>
+            </div>
+            <a class="btn btn-primary" href="BLOG.html">Ir pro Blog</a>
+          </div>
+        </section>
+
+        <!-- MINHA CONTA -->
+        <section class="tab" id="tab-account">
+          <div class="page-title">
+            <h2>Minha Conta</h2>
+            <p class="muted">Perfil, projetos, preferências e segurança.</p>
+          </div>
+
+          <div class="grid-2">
+            <article class="card">
+              <h3>Perfil</h3>
+              <p class="muted">Nome, bio, links, foto e stack.</p>
+              <button class="btn btn-ghost" type="button">Editar perfil</button>
+            </article>
+
+            <article class="card">
+              <h3>Segurança</h3>
+              <p class="muted">Senha, sessões e login social.</p>
+              <button class="btn btn-ghost" type="button">Configurar</button>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Seu JS final (compilado do TS) -->
+  <script src="main.js"></script>
+</body>
+</html>
